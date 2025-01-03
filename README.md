@@ -1,1 +1,1 @@
-# Easy-
+# Easy-Deep-Learning
