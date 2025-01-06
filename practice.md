@@ -1,20 +1,20 @@
-## 1-4. 강화  학습  
-보상을 함으로써 어떤 행동을 하게끔 강화  
-> 행동 → 보상  
+## 5-1. Linear activation  
+결국 MLP는..  
+**행렬** 곱하고 **벡터** 더하고 **activation**의 반복  
+그리고 인공 신경망은 **함수**  
+  
+예시: 
 
-```yaml
-Agent: 행동을 취하는 주체 (예: 강아지, 흑돌)
-Action: Agent가 취할 수 있는  모든 행동 (예: 손, 뒤집기, 수)
-Reward: Agent가 Action에 따라 받게 되는 보상 (예: 간식, 승점)
-Envirionment: Reward를 언제, 얼마만큼 줄지 설계된 환경 (예: 주인, 심판, 백돌)
-State: 현재 상태 (예: 위치)
-Q-function: 특정 State에서 특정 Action을 했을 때 얻을 수 있는 Reward 합의 기댓값(Q(state, action))
-Episode: 각각의 시행
-Q-learning: 
-exploration:
-discount factor: 
-```
+$$
+\begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix}
+\begin{bmatrix} 
+w_{1} & w_{3} & w_{5} \\ 
+w_{2} & w_{4} & w_{6} 
+\end{bmatrix}=
+\begin{bmatrix} b_{1} \\ b_{2} \\ b_{3} \end{bmatrix}
+$$
 
+각각을 x, W₁, b₁
   
 Q&A  
 Q. 1주년 예시에서 environment는 그럼 여자친구인가?  
