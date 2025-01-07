@@ -1,9 +1,13 @@
-## 5-1. 역전파(Backpropagation)  
-### chain r  ule  
-: 합성함수의 미분  
+# Thm6. 이진 분류와 다중 분류  
+## 6-1. 이진 분류에서 sigmoid 함수를 사용하는 이유  
+non-linear activation으로 이진 분류 문제를 풀어보자!  
+1st. 데이터 모으기  
+2nd. 모델 만들기  
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: unit step function 이용  
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
   
 Q&A  
-Q. 1주년 예시에서 environment는 그럼 여자친구인가?  
-Q. Q-fuction에서 지금까지 이동하며 얻은 보상은 포함되는가?  
-A. 아니다.
-Q. 1주년 강화학습에서 그럼 인공지능은 이전 데이터들을 참고하여 이동할 방향을 찾는 것인가? 아니면 그냥 랜덤인가?
+Q. 다양한 변수를 가진 함수가 있는데 이를 만약 하나의 변수에 대해 미분하면 다른 변수는 상수처럼 취급되는가?  
+A. 그렇다. 이것이 특정 변수에 대한 변화율을 구하는 편미분이다.  
