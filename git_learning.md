@@ -45,3 +45,58 @@ vs코드에서 git 기능 제공
 응용: `git difftool 커밋id_1 커밋id_2`  
 그러나..  
 **Git graph** : 위의 것들을 더 편리하게 할 수 있음
+
+---
+## Thm4. git branch  
+코드를 짜다가 기능을 추가하고 싶을 때   
+원본에 수정해도 되지만  
+프로그램이 망자길 수 있다는 우려  
+따라서 파일 복사본을 만들어서 먼저 코드를 짜봄  
+**git의 branch 기능을 이용하면 복사본 만들기 쉬움**  
+**branch**: commit의 복사본  
+
+> `git branch 브랜치명`  
+> : 브랜치명으로 브랜치를 생성해줌-> 사본이 만들어짐  
+
+> `git switch 브랜치명`  
+> : 브랜치로 이동  
+  
+만약 그 브랜치 코드를 main브랜치에 합치고 싶다?  
+우선 main 브랜치로 이동  
+> `git merge 합칠branch명` 입력  
+
+이 때, 같은 파일의 같은 줄을 수정했을 경우 **충돌(conflict)** 이 일어날 수 있음  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st. 원하는 코드만 남기고  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd. git add  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3rd. git commit  
+
+---
+## Thm5. 다양한 git merge 방법(3-way, fast-forward, squash, rebase)  
+### TYPE1) 3-way-merge  
+브랜치에 각각 신규 commit이 1회 이상 있는 경우  
+두 브랜치의 코드를 합침  
+- merge 사용
+  
+### TYPE2) fast-forward merge  
+새로운 브랜치에만 commit이 있는 경우  
+신규 브랜치를 main 브랜치로 지정  
+- merge 사용 시 자동으로 발동  
+  
+### TYPE3) rebase and merge  
+**rebase**: 브랜치의 시작점을 다른 commit로 옮겨주는 행위  
+왜 사용하는가?  
+commit 내역을 한 줄로 이어서 남길 수 있기 때문  
+- 새로운 브랜치로 이동하여 `git rebase main` 사용
+
+> 1st. `git switch 새로운브랜치`  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`git rebase main`  
+> 2nd. `git switch main`  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`git merge 새로운브랜치`  
+
+> `git branch -d 브랜치명`  
+> : merge 완료된 브랜치 삭제  
+> `git branch -D 브랜치명`  
+> : merge 안한 브랜치 삭제  
+
+---
+## Thm6. 다양한 git merge 방법(3-way, fast-forward, squash, rebase)  
