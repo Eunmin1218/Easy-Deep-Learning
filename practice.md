@@ -1,30 +1,13 @@
-## 6-2. 로지스틱 회귀  
-### sigmoid를 이용한 이진 분류  
-- 총 parameter 개수 : gardient의 길이  
-- **`Loss`** : 인공신경망의 출력의 의미를 정함
-  #### →출력이 잘 나오도록 `Loss`를 잘 정하는 것이 중요하다!!
+## 8-2. Batch Normalization(배치 정규화) & Layer Normalization(레이어 정규화)    
+<img src="https://github.com/user-attachments/assets/7585922b-6619-4ffe-9135-96cefba93e03" style="width:30%; height:auto;">  
 
-> ### BCE (Binary Cross-Entropy)
-: 이진 분류에 적합한 Loss 함수 구하는 법  
+만약 위와 같은 경우, `notlinear activation`을 살리지 못함  
   
-예를 들어,  강아지 사진일 경우 **`q`** 를 1에 가깝게 **최대화**,  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고양이 사진일 경우 **`1-q`** 를 **최대화**  
+> ### Batch Normalization
+: 입력 값들을 적절하게 **재배치** 시키는 것 ( 순서 유지 )  
+&nbsp;&nbsp;**`평균과 분산을 학습시키자!`**
+
   
-만약 batch-size가 2 이상일 경우  
-
-$$
-P(y_1 ∩ y_2) = P(y_1)P(y_2)
-$$
-
-그러나 곱하면 계속 작아지므로 
-
-$$
-BCE에서 Loss 값 = -\frac{1}{N} \sum_{n=1}^{N} \log ( {q}_n^{y_n}{1-q}_n^{1-y_n} )
-$$
-
-즉 **분류 ⊂ 회귀**
-> ### Logistic Regression
-: 입력과 출력 사이의 관계를 확률 함수로 ㅍ현하고 이 함수를 은
-
 Q&A  
-Q. 
+Q. 엔트로피?  
+A. 불확실성. 엔트로피가 높다는 건 정보가 많고 확률이 낮다는 것  
