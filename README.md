@@ -1,1 +1,1 @@
-# Easy-Deep-Learning
+## Easy! 딥러닝 강의 요약
