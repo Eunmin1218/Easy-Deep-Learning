@@ -663,7 +663,7 @@ linear->non-linear->linear->non-linear 형태라면..?
 > ### 역전파
 &nbsp;&nbsp;&nbsp;: weight에 대한 편미분을 구하기 위해 chain rule을 사용하여 출력층 방향에서부터 계산  
 &nbsp;&nbsp;&nbsp;&nbsp;**`chain rule`**: 미분을 쪼개어 생각해본다  
-<img src="https://github.com/user-attachments/assets/5187d151-610b-4e70-9c6f-8dd4f3314289" alt="description" style="width:70%; height:auto;">  
+<img src="https://github.com/user-attachments/assets/5187d151-610b-4e70-9c6f-8dd4f3314289" alt="description" style="width:80%; height:auto;">  
 
 주의할 점..  
 > **`gardient path`** 의 경우를 고려하자!  
@@ -924,3 +924,18 @@ A. 불확실성. 엔트로피가 높다는 건 정보가 많고 확률이 낮다
 > ### Layer Normalization  
 : 레이어의 각 노드들에 들어가는 값'들'에 대한 평균과 분산을 계산  
 &nbsp;&nbsp;-> BN과 달리 Batch size에 영향을 받지 않음  
+
+---
+## 8-3. Loss Landscape      
+BN, ReLU를 써도 너무 깊으면 **`Loss 모양이 이상해져 underfitting이 발생`**  
+sol) **skip-connection**이 대표적인 해결 방안  
+
+---
+## 8-4. overfitting(과적합)과 data augmentation(데이터 증강)        
+> ### Overfitting
+1. 입출력 관계를 너무 복잡하게 생각해서 발생  
+   [sol] **`모델을 단순하게 다시 만든다`**
+2. data가 적을 때  
+   [sol] **`data 1개를 변형시켜 사용`**
+
+---
