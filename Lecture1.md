@@ -1,0 +1,201 @@
+# Thm1. 왜 현재 AI가 가장 핫한가?
+## 1-1강. 인공지능 vs 머신러닝 vs 딥러닝  
+AI⊃ML⊃DL 
+
+### 1. AI
+인간의 지능(지적 능력)을 인공적으로 만든 것  
+- 규칙 기반 알고리즘  
+
+
+### 2. ML
+데이터를 기반으로 한 AI 
+- 결정 트리
+- **선형 회귀**
+-  **퍼셉트론**
+-   SVM
+
+|규칙 기반|데이터 기반|
+|--|--|
+|인간이 규칙을 찾음|AI가 깨달음(훈련 과정)|  
+
+1st. **훈련 과정**: 데이터와 정답을 주입하여 학습  
+2nd. **테스트 과정**: 처음 보는 데이터 주입  
+
+
+### 3. DL
+데이터 기반 + 딥 뉴런 네트워크(깊은 인공신경망)를 활용하여 학습  
+인간의 사고 방식(지능)을 수학적으로 풀어내는 것이 딥러닝의 핵심  
+- **CNN**(Convolutional Neurall Network)
+- RNN
+- GAN
+- 트랜스포머...  
+
+#### 1. CNN(Convolutional Neurall Network)
+```mermaid
+graph LR
+A(입력<br>#40;예: 강아지, 고양이 사진#41;)-->B[CNN model]
+B-->C(출력<br>#40;예: 0 or 1#41;)
+```
+
+**[입력과 출력은 모두 숫자]**   
+- 이미지 = 숫자의 행렬  
+- 컬러 이미지 = 3차원 행렬(R, G, B)  
+    size =  3(채널) x 5(행) x 5(렬)
+
+
+#### 2. RNN(Recurrent Neural Network)
+```mermaid
+graph LR
+A(예: 저는 강사입니다)-->B[RNN model]
+B-->C(예: I am an instructor)
+```
+여기서도 입력과 출력 모두 숫자  
+단,  **토크나이징** 과정을 거침
+
+**[토크나이징]**  
+**1st. 토큰화**  
+예) 저는/강사/입니다, I/am/an/instructor  
+**2nd. 각각을 숫자로 바꾸기**  
+-> 벡터
+
+|CNN|RNN|
+|:--:|:--:|
+|이미지 데이터|연속적 데이터|
+||**토크나이징**|
+
+---
+## 1-2. 지도 학습과 비지도 학습
+
+Machine Learning?  
+지도 학습 vs 비지도 학습 vs 자기지도 학습 vs 강화 학습  
+
+### 1. 지도 학습  
+정답(사람이 미리 만들어 놓음)을 알고 있는 채로 학습  
+TYPE1) **회귀**(regression): 연속된 값 출력  
+TYPE2) **분류**(classification): 정해놓은 값 출력  
+|회귀|분류|
+|:--:|:--:|
+|연속된 값|정해놓은 값|
+  
+> #### case1) Classiification
+- 분류
+ 
+> #### case2)Clssification + Localization
+- 분류 + 회귀
+- 회귀: x,y, width, height  
+즉, 훈련 시 x, y, w, h 값까지 같이 넣고  
+출력에서 x, y, w, h 값까지 같이 나오게 하는 것
+
+> #### case3) Object Detection
+- TYPE2에서 여러 객체가 튀어나옴
+
+> #### case4) Instance Segmentaion
+- 픽셀 마다 분류를 함
+- 이미지(행렬) 출력
+
+<br>
+
+**+ Pose Estimation**
+- 사람의 자세 추정
+- 머리 (x, y), 몸(x, y), 어깨(x, y) 등등 입력, 출력
+
+
+<br>
+
+### 2. 비지도 학습
+정답을 모름  
+TYPE1) **군집화**(K-means, DBSCAN...)  
+TYPE2) **차원 축소**(데이터 전처리: PCA, SVD...)
+
+Q & A   
+Q. Instance Segmentaion에서 그럼 각각의 픽셀은 한 영역에만 해당 가능한가?  
+A: 그렇다.
+
+Q. 중간에 인스턴스 분할과 그냥 분할의 차이가 무엇인가?  
+A: 같은 클래스의 객체들도 서로 구분하여 분할한다는 뜻    
+
+Q. 비지도 학습에 대해?  
+A. 레이블이 없는 데이터에서 패턴이나 구조를 찾아내는 것  
+&nbsp;&nbsp;&nbsp;&nbsp;정답이 주어지지 않은 상태에서 데이터를 스스로 학습
+   - 군집화: 비슷한 특성을 가진 데이터들을 그룹으로 묶는 방법
+   - 차원 축소: 데이터의 중요한 특성은 유지하면서 데이터의 복잡성을 줄이는 방법(-> 고차원 데이터 시각화, 처리 속도 증가)
+
+---
+## 1-3. 자기지도 학습   
+지도학습?  
+`문제` 정답 데이터들이 많아야 함-> 데이터 레이블링 비용 상당함  
+`해결` 자기지도 학습!  
+### "진짜 풀려고 했던 문제 말고 가짜 문제를 새롭게 정의해서 먼저 풀어본다"  
+
+예) **1st.** 패치 위치를 랜덤하게 잡는다.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2nd.** 같은 사이즈의 패치들을 주변에 상대적인 위치로 찍는다.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3rd.** (일반적인 방법) 첫 패치 + 주변 하나 패치 입력-> 상대적인 위치를 출력하도록 학습시킨다.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4th.** 3rd를 무한 번 반복  
+
+그렇다면 왜 이게 가능한가?  
+픽셀들이 연속되어 있기 때문이다!  
+
+<br>
+
+> ### 자기지도 학습  
+데이터 안에서 스스로 레이블(정답)을 만들어서 학습  
+<br>
+1st. **`pretext task`**(가짜 문제)를 학습해서 **pre-training**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> pre-trained model  
+2nd. **downstream task**(분류)를 풀기 위해 **transfer learning**(전이 학습)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> classification model
+
+|지도 학습|자기지도 학습|
+|:--:|:--:|
+|2nd|1st 후 2nd|
+
+**[ pretext tast ]**  
+TYPE1) **`Context prediction`**(위의 예시 참고)  
+TYPE2) **`Contrastive learning`**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st. 사진1의 일부를 뗀 사진(1번 사진)을 CNN 모델에 넣은 후 나온 출력(1')  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd. 사진1에서 1st를 반복, 2번 사진과 2'  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3rd. 사진2에서 1st와 2nd를 반복, 3번 사진과 3', 4번 사진과 4'  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4th. 출처 같은 사진은 비슷한 값이 나오게끔, 출처 다른 사진은 최대한 먼 값이 나오도록 학습시키는 기법**  
+
++**GPT**: 다음 단어를 예측하는 방식의 자기지도학습  
+&nbsp;&nbsp;&nbsp;**BERT**: 문장 빈칸에 들어갈 단어 예측하는 방식의 자기지도학습  
+
+Q & A  
+Q. 레이블이란?  
+A. 데이터에 대응하는 숫자들. 데이터에 대한 정답 또는 분류 결과.  
+ 
+
+---
+
+## 1-4. 강화  학습  
+보상을 함으로써 어떤 행동을 하게끔 강화  
+즉, **행동 → 보상**  
+
+```yaml
+Agent: 행동을 취하는 주체 (예: 강아지, 흑돌)
+Action: Agent가 취할 수 있는  모든 행동 (예: 손, 뒤집기, 수)
+Reward: Agent가 Action에 따라 받게 되는 보상 (예: 간식, 승점)
+Envirionment: Reward를 언제, 얼마만큼 줄지 설계된 환경 (예: 주인, 심판, 백돌)
+State: 현재 상태 (예: 위치)
+Q-function: 특정 State에서 특정 Action을 했을 때 Reward의 기댓값(즉, Q(state, action)에 대한 함수)
+Episode: 각각의 시행
+Q-learning: 이전 state에서 행동했던 것에 대한 Q값을 업데이트 하는 것 → 가장 큰 값을 가지고 옴
+exploration: 예) E-Greedy: 0에서 1까지의 확률로 다른 행동을 하게 함
+discount factor(Γ): 0에서 1까지의 값. Q-learning에서 값을 가져올 때 Γ를 곱함.
+```
+> `Agent`가 `Action`을 통해 랜덤으로 행동해 `Reward`를 받음  
+그러면서 `Q-function` 값을 기록하고 `Q-learning`을 하며 이를 반영해 움직임  
+  
+> 이때, 학습을 어느정도 하면 일정 행동만 할 수 있음  
+→ `exploration`
+
+> 그리고 Q값이 같을 때 최적의 행동이 무엇인지를 알려줘야 함  
+→ `discount factor(Γ)`
+
+
+  
+Q&A    
+Q. Q-fuction에서 지금까지 이동하며 얻은 보상은 포함되는가?  
+A. 아니다.  
+
+---
