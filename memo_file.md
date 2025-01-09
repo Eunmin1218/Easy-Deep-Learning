@@ -727,7 +727,7 @@ $$
 BCE에서 Loss 값 = -\frac{1}{k} \sum_{n=1}^{k} \log ( {q}_n^{y_n}  ({1-q}_n)^{1-y_n} )
 $$
 
-<img src="https://github.com/user-attachments/assets/b36ee7aa-d8d7-4e77-81fd-88223378780e" style="width:55%; height:auto;">
+<img src="https://github.com/user-attachments/assets/b36ee7aa-d8d7-4e77-81fd-88223378780e" style="width:80%; height:auto;">
 
 즉 **분류 ⊂ 회귀**
 > ### Logistic Regression
@@ -894,3 +894,33 @@ A. 불확실성. 엔트로피가 높다는 건 정보가 많고 확률이 낮다
 
 즉, **sigmoid**를 사용할 경우 티끌 모아 티끌  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReLU**는 살릴 것만 살리자  
+
+---
+## 8-2. Batch Normalization(배치 정규화) & Layer Normalization(레이어 정규화)    
+<img src="https://github.com/user-attachments/assets/7585922b-6619-4ffe-9135-96cefba93e03" style="width:30%; height:auto;">  
+
+만약 위와 같은 경우, `notlinear activation`을 살리지 못함  
+  
+> ### Batch Normalization
+: 입력 값들을 적절하게 **재배치** 시키는 것 ( 순서 유지 )  
+&nbsp;&nbsp;**`평균과 분산을 학습시키자!`**  
+<img src="https://github.com/user-attachments/assets/aa59ce27-15fd-430b-93e6-d92fdb574b0d" style="width:70%; height:auto;">
+
+숫자 인식 예시에서, 배치 정규화를 하지 않았을 경우  
+데이터가 점점 하얘짐  
+미분값이 점점 사라지니까!  
+  
+- Training 때와 Test 때 다르게 동작  
+  왜? 만약 1개를 테스트한다고 하면 분산이 0이라 제대로 동작이 안됨  
+  -> Test 때 **moving average** 된 것을 사용
+- **batch size** 에 따라 효과가 떨어질 수 있음
+  -> **batch size**가 충분히 커야 함
+
+|BN|LN|
+|:--:|:--:|
+|평균과 분산을 Batch에 대해 계산|각 노드에 해당하는 '들'값 이용|
+|이미지 데이터|자연어 처리|
+   
+> ### Layer Normalization  
+: 레이어의 각 노드들에 들어가는 값'들'에 대한 평균과 분산을 계산  
+&nbsp;&nbsp;-> BN과 달리 Batch size에 영향을 받지 않음  
